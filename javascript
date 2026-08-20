@@ -1,10 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Interatividade ao clicar na caixa de detecção facial
+    // Interatividade das caixas de rosto
     const faceBoxes = document.querySelectorAll('.face-box');
     const inspectorDetails = document.getElementById('inspectorDetails');
 
     faceBoxes.forEach(box => {
-        box.addEventListener('click', () => {
+        box.addEventListener('click', (e) => {
+            e.stopPropagation();
             const id = box.getAttribute('data-id');
             const match = box.getAttribute('data-match');
             const status = box.getAttribute('data-status');
@@ -26,50 +27,60 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Controle de Pause/Resume do Varredor de Tela
+    // Pausar/Retomar Varredura
     const btnToggleScan = document.getElementById('btnToggleScan');
     const scanLine = document.querySelector('.scan-line');
     let isScanning = true;
 
-    btnToggleScan.addEventListener('click', () => {
-        isScanning = !isScanning;
-        if (isScanning) {
-            scanLine.style.animationPlayState = 'running';
-            btnToggleScan.textContent = 'Pausar Varredura';
-        } else {
-            scanLine.style.animationPlayState = 'paused';
-            btnToggleScan.textContent = 'Retomar Varredura';
-        }
-    });
+    if (btnToggleScan && scanLine) {
+        btnToggleScan.addEventListener('click', () => {
+            isScanning = !isScanning;
+            if (isScanning) {
+                scanLine.style.animationPlayState = 'running';
+                btnToggleScan.textContent = 'Pausar Varredura';
+                btnToggleScan.classList.remove('secondary-btn');
+                btnToggleScan.classList.add('primary-btn');
+            } else {
+                scanLine.style.animationPlayState = 'paused';
+                btnToggleScan.textContent = 'Retomar Varredura';
+                btnToggleScan.classList.remove('primary-btn');
+                btnToggleScan.classList.add('secondary-btn');
+            }
+        });
+    }
 
-    // Filtro de Alertas
+    // Filtrar Alertas
     const btnFilterAlerts = document.getElementById('btnFilterAlerts');
     let showingOnlyAlerts = false;
 
-    btnFilterAlerts.addEventListener('click', () => {
-        showingOnlyAlerts = !showingOnlyAlerts;
-        faceBoxes.forEach(box => {
-            if (showingOnlyAlerts) {
-                if (!box.classList.contains('warning')) {
-                    box.style.display = 'none';
+    if (btnFilterAlerts) {
+        btnFilterAlerts.addEventListener('click', () => {
+            showingOnlyAlerts = !showingOnlyAlerts;
+            faceBoxes.forEach(box => {
+                if (showingOnlyAlerts) {
+                    if (!box.classList.contains('warning')) {
+                        box.style.display = 'none';
+                    }
+                } else {
+                    box.style.display = 'block';
                 }
-            } else {
-                box.style.display = 'block';
-            }
+            });
+
+            btnFilterAlerts.textContent = showingOnlyAlerts ? 'Mostrar Todos' : 'Filtrar Apenas Alertas';
         });
+    }
 
-        btnFilterAlerts.textContent = showingOnlyAlerts ? 'Mostrar Todos' : 'Filtrar Apenas Alertas';
-    });
-
-    // Enquete Interativa
+    // Enquete
     const pollButtons = document.querySelectorAll('.poll-btn');
     const pollResults = document.getElementById('pollResults');
     const pollOptionsContainer = document.querySelector('.poll-options');
 
     pollButtons.forEach(btn => {
         btn.addEventListener('click', () => {
-            pollOptionsContainer.style.display = 'none';
-            pollResults.classList.remove('hidden');
+            if (pollOptionsContainer && pollResults) {
+                pollOptionsContainer.style.display = 'none';
+                pollResults.classList.remove('hidden');
+            }
         });
     });
 });
