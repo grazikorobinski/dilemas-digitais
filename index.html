@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reconhecimento Facial em Espaços Públicos</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <span class="logo-icon">👁</span>
+            <span class="logo-text">Vision<strong>Guard</strong></span>
+        </div>
+        <nav>
+            <a href="#about">Tecnologia</a>
+            <a href="#interactive">Simulador</a>
+            <a href="#ethics">Dilemas Éticos</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="badge">Tecnologia & Sociedade</div>
+                <h1>Reconhecimento Facial em Espaços Públicos</h1>
+                <p>Segurança ampliada ou vigilância de massa? Explore como os sistemas de biometria facial estão transformando a mobilidade e a privacidade nas cidades inteligentes.</p>
+                <div class="hero-actions">
+                    <a href="#interactive" class="btn primary-btn">Testar Simulador</a>
+                    <a href="#ethics" class="btn secondary-btn">Entender os Impactos</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Camera/Scanner Simulator -->
+        <section id="interactive" class="interactive-section">
+            <h2>Simulador de Reconhecimento em Tempo Real</h2>
+            <p>Clique nas caixas de detecção da câmera para inspecionar os metadados gerados pelo algoritmo.</p>
+            
+            <div class="simulator-container">
+                <div class="camera-feed" id="cameraFeed">
+                    <div class="feed-header">
+                        <span class="status-dot"></span> CAM-04 [ÁREA PÚBLICA / PRAÇA CENTRAL] - LIVE
+                    </div>
+                    
+                    <!-- Simulated Face Boxes -->
+                    <div class="face-box" style="top: 25%; left: 30%; width: 90px; height: 90px;" data-id="ID-8921" data-match="98.4%" data-status="OK" data-role="Cidadão">
+                        <div class="tag">ID-8921 | 98.4%</div>
+                    </div>
+
+                    <div class="face-box warning" style="top: 40%; left: 65%; width: 105px; height: 105px;" data-id="ALERTA-09" data-match="87.2%" data-status="SUSPEITO" data-role="Procurado">
+                        <div class="tag">ALERTA-09 | 87.2%</div>
+                    </div>
+
+                    <div class="face-box" style="top: 55%; left: 15%; width: 80px; height: 80px;" data-id="ID-4402" data-match="95.1%" data-status="OK" data-role="Pedestre">
+                        <div class="tag">ID-4402 | 95.1%</div>
+                    </div>
+
+                    <div class="scan-line"></div>
+                </div>
+
+                <div class="sidebar-panel">
+                    <h3>Metadados do Elemento</h3>
+                    <div id="inspectorDetails" class="inspector-details">
+                        <p class="placeholder-text">Clique em um dos quadros de marcação no feed da câmera.</p>
+                    </div>
+                    <div class="controls">
+                        <button id="btnToggleScan" class="btn primary-btn">Pausar Varredura</button>
+                        <button id="btnFilterAlerts" class="btn secondary-btn">Filtrar Apenas Alertas</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ethics Section -->
+        <section id="ethics" class="ethics-section">
+            <h2>Prós e Contras: O Debate Global</h2>
+            <div class="comparison-table">
+                <div class="column pros">
+                    <h3>Benefícios Prometidos</h3>
+                    <ul>
+                        <li><strong>Segurança Pública:</strong> Localização rápida de infratores em multidões.</li>
+                        <li><strong>Pessoas Desaparecidas:</strong> Resgate de crianças e idosos perdidos.</li>
+                        <li><strong>Eficiência Urbana:</strong> Pagamento biométrico no transporte público.</li>
+                    </ul>
+                </div>
+                <div class="column cons">
+                    <h3>Riscos e Críticas</h3>
+                    <ul>
+                        <li><strong>Viés Algorítmico:</strong> Taxas elevadas de erros e falsos positivos em minorias.</li>
+                        <li><strong>Vigilância de Massa:</strong> Perda do anonimato e inibição da liberdade de expressão.</li>
+                        <li><strong>Segurança de Dados:</strong> Riscos associados ao vazamento de dados biométricos sensíveis.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Poll -->
+        <section class="poll-section">
+            <h2>Qual é a sua opinião?</h2>
+            <p>O reconhecimento facial em praças e ruas públicas deveria ser banido?</p>
+            <div class="poll-options">
+                <button class="poll-btn" data-vote="yes">Sim, viola a privacidade</button>
+                <button class="poll-btn" data-vote="no">Não, aumenta a segurança</button>
+                <button class="poll-btn" data-vote="regulated">Apenas com regulamentação</button>
+            </div>
+            <div id="pollResults" class="poll-results hidden">
+                <p>Obrigado pelo seu voto!</p>
+                <div class="bar-container"><div class="bar bar-yes" style="width: 40%">40% Sim</div></div>
+                <div class="bar-container"><div class="bar bar-regulated" style="width: 45%">45% Com Regulamentação</div></div>
+                <div class="bar-container"><div class="bar bar-no" style="width: 15%">15% Não</div></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Portal de Conscientização Tecnológica. Reconhecimento Facial em Espaços Públicos.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
